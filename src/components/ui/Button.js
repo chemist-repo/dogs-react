@@ -1,4 +1,7 @@
-export default function UiButton ({ onClick, children }) {
+export default function UiButton ({
+  onClick = () => {},
+  children = ''
+}) {
   return (
     <button
       onClick={onClick}

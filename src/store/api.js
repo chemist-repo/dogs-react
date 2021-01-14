@@ -1,5 +1,6 @@
 import axios from 'axios'
 import $op from 'object-path'
+import $ls from '../helpers/ls'
 
 import {
   SET_ALL_BREEDS_LIST,
@@ -8,7 +9,8 @@ import {
   SET_IS_RANDOM_DOGS_ACTION,
   SET_BREED_DOGS_LIST,
   SET_MORE_BREED_DOGS_LIST,
-  SET_IS_BREED_DOGS_ACTION
+  SET_IS_BREED_DOGS_ACTION,
+  SET_FAVORITES
 } from './action-types'
 import actions from './actions'
 
@@ -19,16 +21,23 @@ const $axios = axios.create({
 const API = store => {
   return {
     async getAllBreedsList () {
-      try {
-        const { data } = await $axios({
-          url: '/breeds/list/all',
-          method: 'GET'
-        })
-        const allBreedsList = Object.keys($op.get(data, 'message', []))
-        store.dispatch(actions[SET_ALL_BREEDS_LIST](allBreedsList))
-        return Promise.resolve(allBreedsList)
-      } catch (error) {
-        return Promise.reject(error)
+      const allBreedsListFromLS = $ls.get('allBreedsList')
+      if (allBreedsListFromLS) {
+        store.dispatch(actions[SET_ALL_BREEDS_LIST](allBreedsListFromLS))
+        return Promise.resolve(allBreedsListFromLS)
+      } else {
+        try {
+          const { data } = await $axios({
+            url: '/breeds/list/all',
+            method: 'GET'
+          })
+          const allBreedsList = Object.keys($op.get(data, 'message', []))
+          $ls.set('allBreedsList', allBreedsList)
+          store.dispatch(actions[SET_ALL_BREEDS_LIST](allBreedsList))
+          return Promise.resolve(allBreedsList)
+        } catch (error) {
+          return Promise.reject(error)
+        }
       }
     },
     async getRandomDogsList () {
@@ -88,6 +97,10 @@ const API = store => {
       } finally {
         store.dispatch(actions[SET_IS_BREED_DOGS_ACTION](false))
       }
+    },
+    getFavorites () {
+      const favorites = $ls.get('favorites') || []
+      store.dispatch(actions[SET_FAVORITES](favorites))
     }
   }
 }

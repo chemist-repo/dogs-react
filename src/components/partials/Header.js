@@ -3,6 +3,7 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import $op from 'object-path'
 import UiSelect from '../ui/Select'
+import UiIcon from '../ui/Icon'
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +11,7 @@ const mapStateToProps = state => {
   }
 }
 
-const PartialsHeader = ({ allBreedsList }) => {
+const PartialHeader = ({ allBreedsList, dispatch }) => {
   const history = useHistory()
   const match = useRouteMatch({
     path: '/b/:bread',
@@ -31,7 +32,7 @@ const PartialsHeader = ({ allBreedsList }) => {
   return (
     <header className="header">
       <Link to="/" className="logo">
-        <img src="/img/logo.png" alt="dogs-vue" className="logo-img" />
+        <img src="/dogs-react/img/logo.png" alt="dogs-vue" className="logo-img" />
       </Link>
       <nav className="nav">
         <Link to="/" className="ui-button">Случайные собачки</Link>
@@ -39,6 +40,7 @@ const PartialsHeader = ({ allBreedsList }) => {
           updateCurrent={onSelectBreed}
           options={allBreedsList}
           current={current}
+          Arrow={() => <UiIcon name="arrow-down" />}
         />
         <Link to="/favorites" className="ui-button">Избранное</Link>
       </nav>
@@ -46,4 +48,4 @@ const PartialsHeader = ({ allBreedsList }) => {
   )
 }
 
-export default connect(mapStateToProps)(PartialsHeader)
+export default connect(mapStateToProps)(PartialHeader)

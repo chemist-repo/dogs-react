@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-// import { mount, unmount } from '../../helpers/outside'
+import { mount } from '../../helpers/outside'
 
 const RenderOption = ({ option, updateCurrent }) => {
   const onCLick = () => {
@@ -19,7 +19,8 @@ export default function UiSelect ({
   updateCurrent = () => {},
   Arrow = null
 }) {
-  const vNode = useRef(null)
+  const refSelectRoot = useRef(null)
+  const selectNode = refSelectRoot.current
   const [active, setActive] = useState(false)
   const filteredOptions = options.filter(option => option !== current)
 
@@ -30,13 +31,13 @@ export default function UiSelect ({
     setActive(false)
     updateCurrent(option)
   }
-  // const onClickOutside = e => {
-  //   setActive(false)
-  //   mount(e.target, e)
-  // }
+
+  if (selectNode && !selectNode.__clickOutside__) {
+    mount(selectNode, () => setActive(false))
+  }
   return (
     <div
-      ref={vNode}
+      ref={refSelectRoot}
       className="ui-select"
     >
       <button

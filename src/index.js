@@ -8,6 +8,7 @@ import store from './store'
 import './assets/scss/main.scss'
 
 (async () => {
+  store.$api.getFavorites()
   try {
     await store.$api.getAllBreedsList()
   } catch (error) {

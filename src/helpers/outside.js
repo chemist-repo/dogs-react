@@ -1,23 +1,26 @@
 export function mount (el, event) {
+  if (el.__clickOutside__) {
+    window.removeEventListener('click', el.__clickOutside__)
+    el.__clickOutside__ = null
+  }
   const handler = (e) => {
     if ((!el.contains(e.target) && el !== e.target)) {
       event(e)
     }
   }
-  el.__vueClickOutside__ = handler
 
-  // Debounce click
-  setTimeout(() => {
-    window.addEventListener('click', handler)
-  }, 0)
+  window.addEventListener('click', handler)
+  el.__clickOutside__ = handler
 }
+
 export function unmount (el) {
   window.removeEventListener('click', el.__clickOutside__)
   el.__clickOutside__ = null
 }
 
-
-export default {
+const outside = {
   mount,
   unmount
 }
+
+export default outside
