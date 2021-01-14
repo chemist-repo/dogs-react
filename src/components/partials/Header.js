@@ -20,21 +20,33 @@ const PartialHeader = ({ allBreedsList, dispatch }) => {
   })
 
   const breed = $op.get(match, 'params.bread', 'Выберите значение')
+  const [active, setActive] = useState(false)
   const [current, setCurrent] = useState(breed)
 
   useEffect(() => {
+    setActive(false)
     setCurrent(breed)
   }, [breed])
 
+  const onToggleActive = () => {
+    setActive(!active)
+  }
   const onSelectBreed = breed => {
     history.push(`/b/${breed}`)
   }
+
   return (
     <header className="header">
       <Link to="/" className="logo">
         <img src="/dogs-react/img/logo.png" alt="dogs-vue" className="logo-img" />
       </Link>
-      <nav className="nav">
+      <button onClick={onToggleActive} className="menu">
+        {active
+          ? (<UiIcon name="close" />)
+          : (<UiIcon name="menu" />)
+        }
+      </button>
+      <nav className={`nav ${active ? 'active': ''}`}>
         <Link to="/" className="ui-button">Случайные собачки</Link>
         <UiSelect
           updateCurrent={onSelectBreed}
