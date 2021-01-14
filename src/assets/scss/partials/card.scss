@@ -1,0 +1,23 @@
+.card {
+  @extend .border-radius--default;
+  @extend .overflow--hidden;
+  @extend .cursor--pointer;
+  @extend .elevation-2;
+  @extend .pos-r;
+
+  &-icon {
+    @extend .border-radius--rounded;
+    @extend .pos-a;
+    @extend .dif;
+    @extend .aic;
+    @extend .jcc;
+
+    width: $global-size * 2;
+    height: $global-size * 2;
+    top: $global-size / 2;
+    right: $global-size / 2;
+    background-color: $color-white;
+    color: $color-primary;
+    font-size: $global-size * 1.25;
+  }
+}

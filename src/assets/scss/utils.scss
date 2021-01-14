@@ -1,0 +1,230 @@
+.h-100 {
+  height: 100%;
+}
+.w-100 {
+  width: 100%;
+}
+
+.container {
+  @extend .mx-auto;
+  @extend .my-0;
+  @extend .px-3;
+
+  width: 80rem;
+
+  &-fluid {
+    @extend .container;
+
+    width: auto;
+  }
+}
+
+.pos {
+  &-r {
+    position: relative;
+  }
+  &-a {
+    position: absolute;
+  }
+}
+
+.cursor {
+  &--pointer {
+    cursor: pointer;
+  }
+}
+
+.t {
+  &d {
+    &u {
+      text-decoration: underline;
+    }
+    &n {
+      text-decoration: none;
+    }
+  }
+  &t {
+    &u {
+      text-transform: uppercase;
+    }
+    &c {
+      text-transform: capitalize;
+    }
+    &fu {
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.d {
+  &i {
+    display: inline;
+  }
+  &b {
+    display: block;
+  }
+  &ib {
+    display: inline-block;
+  }
+  &f {
+    display: flex;
+  }
+  &if {
+    display: inline-flex;
+  }
+  &g {
+    display: grid;
+  }
+  &ig {
+    display: inline-grid;
+  }
+}
+.ai {
+  &f {
+    &s {
+      align-items: flex-start;
+    }
+    &e {
+      align-items: flex-end;
+    }
+  }
+  &c {
+    align-items: center;
+  }
+  &s {
+    align-items: stretch;
+  }
+}
+.jc {
+  &f {
+    &s {
+      justify-content: flex-start;
+    }
+    &e {
+      justify-content: flex-end;
+    }
+  }
+  &c {
+    justify-content: center;
+  }
+  &s {
+    justify-content: stretch;
+
+    &b {
+      justify-content: space-between;
+    }
+    &a {
+      justify-content: space-around;
+    }
+  }
+}
+.f {
+  &w {
+    &w {
+      flex-wrap: wrap;
+
+      &r {
+        flex-wrap: wrap-reverse;
+      }
+    }
+    &n {
+      flex-wrap: nowrap;
+    }
+  }
+  &d {
+    &c {
+      flex-direction: column;
+
+      &r {
+        flex-direction: column-reverse;
+      }
+    }
+    &r {
+      flex-direction: row;
+
+      &r {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}
+
+.overflow {
+  &--hidden {
+    overflow: hidden;
+  }
+}
+
+.border {
+  &--none {
+    border: none;
+  }
+  &-radius {
+    &--small {
+      border-radius: $global-size / 4;
+    }
+    &--default {
+      border-radius: $global-size / 2;
+    }
+    &--rounded {
+      border-radius: 50%;
+    }
+  }
+}
+
+$spacing-names: m 'margin', p 'padding';
+$spacing-types: t '-top', b '-bottom', l '-left', r '-right', a '';
+$spacing-values: '5' $global-size * 2,
+                 '4' $global-size * 1.5,
+                 '3' $global-size,
+                 '2' $global-size / 2,
+                 '1' $global-size / 4,
+                 '0' 0,
+                 'auto' auto;
+
+@each $item in $spacing-names {
+  $spacing-name: nth($item, 1);
+  $spacing-value: nth($item, 2);
+
+  .#{$spacing-name} {
+    @each $type in $spacing-types {
+      $name-type: nth($type, 1);
+      $name-value: nth($type, 2);
+
+      &#{$name-type} {
+        @each $spacing in $spacing-values {
+          $name-space: nth($spacing, 1);
+          $space: nth($spacing, 2);
+
+          &-#{$name-space} {
+            #{$spacing-value}#{$name-value}: $space;
+          }
+        }
+      }
+    }
+    &y {
+      @each $spacing in $spacing-values {
+        $name-space: nth($spacing, 1);
+        $space: nth($spacing, 2);
+
+        &-#{$name-space} {
+          #{$spacing-value}-top: $space;
+          #{$spacing-value}-bottom: $space;
+        }
+      }
+    }
+    &x {
+      @each $spacing in $spacing-values {
+        $name-space: nth($spacing, 1);
+        $space: nth($spacing, 2);
+
+        &-#{$name-space} {
+          #{$spacing-value}-right: $space;
+          #{$spacing-value}-left: $space;
+        }
+      }
+    }
+  }
+}

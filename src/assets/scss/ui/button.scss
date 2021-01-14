@@ -1,0 +1,19 @@
+.ui-button {
+  @extend .border-radius--small;
+  @extend .cursor--pointer;
+  @extend .border--none;
+  @extend .ma-0;
+  @extend .py-2;
+  @extend .px-3;
+  @extend .tdn;
+
+  font-size: inherit;
+  line-height: inherit;
+  outline: none;
+  background-color: $color-primary;
+  color: $color-white;
+
+  &:hover {
+    background-color: darken($color-primary, 5);
+  }
+}

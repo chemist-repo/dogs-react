@@ -1,0 +1,63 @@
+.ui-select {
+  @extend .dif;
+  @extend .pos-r;
+
+  &-current {
+    @extend .ui-button;
+    @extend .dif;
+    @extend .aic;
+    @extend .w-100;
+
+    &.active {
+      .ui-select {
+        &-arrow {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+  &-value {
+    @extend .ttfu;
+    @extend .mr-2;
+  }
+  &-arrow {
+    @extend .dif;
+    @extend .ml-auto;
+  }
+  &-wrap {
+    @extend .elevation-2;
+    @extend .pos-a;
+    @extend .df;
+    @extend .fdc;
+    @extend .mt-2;
+    @extend .py-1;
+    @extend .w-100;
+
+    height: 20rem;
+    right: 0;
+    top: 100%;
+    background-color: $color-white;
+    z-index: 2;
+    overflow-y: auto;
+    min-width: min-content;
+  }
+  &-option {
+    @extend .tdn;
+    @extend .ttfu;
+    @extend .px-2;
+    @extend .py-1;
+
+    border: none;
+    background-color: $color-white;
+    color: $color-black;
+    cursor: pointer;
+    outline: none;
+    font-size: inherit;
+    text-align: inherit;
+
+    &:hover, &:focus {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.ui-picture {
+  @extend .overflow--hidden;
+  @extend .pos-r;
+  @extend .db;
+
+  background-color: $color-black;
+
+  &--img {
+    @extend .pos-a;
+    @extend .w-100;
+    @extend .h-100;
+
+    left: 0;
+    top: 0;
+    object-fit: contain;
+    object-position: center;
+  }
+  &-format {
+    &--4x3 {
+      &:before {
+        @extend .db;
+        @extend .pos-r;
+
+        content: "";
+        padding-top: 75%;
+      }
+    }
+  }
+}

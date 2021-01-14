@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
 
-function App() {
+import PartialHeader from './components/partials/Header'
+
+import ViewHome from './views/Home'
+import ViewFavorites from './views/Favorites'
+import ViewBreed from './views/Breed'
+import ViewNoMatch from './views/NoMatch'
+
+export default function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="__app__">
+        <PartialHeader />
+        <Switch>
+          <Route exact path="/">
+            <ViewHome />
+          </Route>
+          <Route path="/b/:bread">
+            <ViewBreed />
+          </Route>
+          <Redirect from="/b" to="/" />
+          <Route
+            path="/favorites"
+          >
+            <ViewFavorites />
+          </Route>
+          <Route path="*">
+            <ViewNoMatch />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  )
 }
-
-export default App;
