@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/dogs-react/static/css/main.11d1e7e8.chunk.css",
+    "main.css": "/dogs-react/static/css/main.1d8231bc.chunk.css",
     "main.js": "/dogs-react/static/js/main.ba4da504.chunk.js",
     "main.js.map": "/dogs-react/static/js/main.ba4da504.chunk.js.map",
     "runtime-main.js": "/dogs-react/static/js/runtime-main.4aa85fd0.js",
@@ -8,13 +8,13 @@
     "static/js/2.0ea5605c.chunk.js": "/dogs-react/static/js/2.0ea5605c.chunk.js",
     "static/js/2.0ea5605c.chunk.js.map": "/dogs-react/static/js/2.0ea5605c.chunk.js.map",
     "index.html": "/dogs-react/index.html",
-    "static/css/main.11d1e7e8.chunk.css.map": "/dogs-react/static/css/main.11d1e7e8.chunk.css.map",
+    "static/css/main.1d8231bc.chunk.css.map": "/dogs-react/static/css/main.1d8231bc.chunk.css.map",
     "static/js/2.0ea5605c.chunk.js.LICENSE.txt": "/dogs-react/static/js/2.0ea5605c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4aa85fd0.js",
     "static/js/2.0ea5605c.chunk.js",
-    "static/css/main.11d1e7e8.chunk.css",
+    "static/css/main.1d8231bc.chunk.css",
     "static/js/main.ba4da504.chunk.js"
   ]
 }
